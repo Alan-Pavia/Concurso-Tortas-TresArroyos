@@ -17,22 +17,22 @@ function calcularPuntaje(sabor: number, presentacion: number, dificultad: number
 }
 
 function determinarGanador(): void {
-    const numConcursantes = fs.questionInt('¿Cuántos concursantes habrá? ');
+    const numConcursantes = fs.questionInt("Cuantos concursantes habra? ");
 
     let maxPuntaje = 0;
     let numeroGanador = 0;
     let hayEmpate = false;
 
     for (let i = 1; i <= numConcursantes; i++) {
-        console.log(`\nConcursante ${i}:`);
+        console.log(`\nConcursante n° ${i}:`);
         
-        const sabor = fs.questionInt('Puntuación de Sabor (1-5): ');
-        const presentacion = fs.questionInt('Puntuación de Presentación (1-5): ');
-        const dificultad = fs.questionInt('Puntuación de Dificultad (1-5): ');
+        const sabor = fs.questionInt('Puntuacion de Sabor (1-5): ');
+        const presentacion = fs.questionInt('Puntuacion de Presentacion (1-5): ');
+        const dificultad = fs.questionInt('Puntuacion de Dificultad (1-5): ');
 
         const puntajeTotal = calcularPuntaje(sabor, presentacion, dificultad);
 
-        console.log(`\nPuntuación total: ${puntajeTotal}`);
+        console.log(`\nPuntuacion total: ${puntajeTotal}`);
 
         /*Verifico el ganador del concurso  se actualiza el puntaje máximo y se verifica si hay empates, permitiendo saber quien gano o si hay un empate */
         if (puntajeTotal > maxPuntaje) {
