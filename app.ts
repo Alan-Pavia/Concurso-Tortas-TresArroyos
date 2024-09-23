@@ -16,8 +16,25 @@ function calcularPuntaje(sabor: number, presentacion: number, dificultad: number
     return sabor + presentacion + dificultad;
 }
 
+// Función para validar puntajes entre 1 y 5
+function obtenerPuntajeValido(tipo: string): number {
+    let puntaje = fs.questionInt(`Puntuacion de ${tipo} (1-5): `);
+    while (puntaje < 1 || puntaje > 5) {
+        console.log(`La puntuacion de ${tipo} debe ser entre 1 y 5.`);
+        puntaje = fs.questionInt(`Puntuacion de ${tipo} (1-5): `);
+    }
+    return puntaje;
+}
+
 function determinarGanador(): void {
-    const numConcursantes = fs.questionInt("Cuantos concursantes habra? ");
+    let numConcursantes = fs.questionInt("Cuantos concursantes habra? ");
+
+    // Validación de que el número de concursantes sea mayor que 0
+    while (numConcursantes <= 0) {
+        console.log("Debe haber al menos un concursante.");
+        numConcursantes = fs.questionInt("Cuantos concursantes habra? ");
+    }
+
 
     let maxPuntaje = 0;
     let numeroGanador = 0;
@@ -26,9 +43,9 @@ function determinarGanador(): void {
     for (let i = 1; i <= numConcursantes; i++) {
         console.log(`\nConcursante n° ${i}:`);
         
-        const sabor = fs.questionInt('Puntuacion de Sabor (1-5): ');
-        const presentacion = fs.questionInt('Puntuacion de Presentacion (1-5): ');
-        const dificultad = fs.questionInt('Puntuacion de Dificultad (1-5): ');
+        const sabor = obtenerPuntajeValido('Sabor');
+        const presentacion = obtenerPuntajeValido('Presentacion');
+        const dificultad = obtenerPuntajeValido('Dificultad');
 
         const puntajeTotal = calcularPuntaje(sabor, presentacion, dificultad);
 
